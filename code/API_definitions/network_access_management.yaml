@@ -1296,6 +1296,9 @@ components:
       example: &reboot-id "reboot-1"
 
     GeographicPoint:
+      description: |
+        latitude, longitude, and elevation describing the geographic location of the access point
+        required properties
       type: object
       properties:
         latitude:
