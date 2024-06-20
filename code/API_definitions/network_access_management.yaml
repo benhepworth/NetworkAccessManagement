@@ -212,7 +212,6 @@ paths:
     get:
       tags:
         - Service Sites
-        - Devices
       summary: Get all devices at the service site
       security:
         - oauth2:
@@ -275,7 +274,6 @@ paths:
     get:
       tags:
         - Service Sites
-        - Isolated Networks
       summary: Get all networks at a service site
       operationId: getNetworksByServiceSite
       description: |
@@ -455,7 +453,6 @@ paths:
     get:
       tags:
         - Devices
-        - Isolated Networks
       summary: Get all networks configured on a device
       operationId: getNetworksByDevice
       description: |
@@ -501,7 +498,6 @@ paths:
     patch:
       tags:
         - Devices
-        - Isolated Networks
       summary: Bulk insert, remove or replace many networks from the configuration of a device
       operationId: patchDeviceWithNetworks
       description: |
@@ -829,7 +825,6 @@ paths:
       - $ref: "#/components/parameters/netId"
     get:
       tags:
-        - Devices
         - Isolated Networks
       summary: Get all devices configured with a network
       operationId: getDevicesByNetwork
@@ -886,7 +881,6 @@ paths:
 
     patch:
       tags:
-        - Devices
         - Isolated Networks
       summary: Bulk insert, remove, or replace a network from the configuration of many devices
       operationId: patchDevicesWithNetwork
