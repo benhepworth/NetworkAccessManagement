@@ -213,7 +213,6 @@ paths:
     get:
       tags:
         - Service Sites
-        - Devices
       summary: Get all devices at the service site
       security:
         - oauth2:
@@ -276,7 +275,6 @@ paths:
     get:
       tags:
         - Service Sites
-        - Isolated Networks
       summary: Get all networks at a service site
       operationId: getNetworksByServiceSite
       description: |
@@ -385,8 +383,6 @@ paths:
           $ref: "#/components/responses/Generic503"
 
   /devices/{deviceId}:
-    parameters:
-      - $ref: "#/components/parameters/deviceId"
     get:
       tags:
         - Devices
@@ -411,6 +407,8 @@ paths:
               - `cpe-management-isolated-networks-primary-write`
               - `cpe-management-isolated-networks-auxiliary-read`
               - `cpe-management-isolated-networks-auxiliary-write`
+      parameters:
+        - $ref: "#/components/parameters/deviceId"
       responses:
         "200":
           description: Contains information about the device
@@ -451,12 +449,9 @@ paths:
           $ref: "#/components/responses/Generic503"
 
   /devices/{deviceId}/isolated-networks:
-    parameters:
-      - $ref: "#/components/parameters/deviceId"
     get:
       tags:
         - Devices
-        - Isolated Networks
       summary: Get all networks configured on a device
       operationId: getNetworksByDevice
       description: |
@@ -474,6 +469,8 @@ paths:
             - `cpe-management-isolated-networks-primary-write`
             - `cpe-management-isolated-networks-auxiliary-read`
             - `cpe-management-isolated-networks-auxiliary-write`
+      parameters:
+        - $ref: "#/components/parameters/deviceId"
       responses:
         "200":
           description: Contains information about networks configured on the device
@@ -502,7 +499,6 @@ paths:
     patch:
       tags:
         - Devices
-        - Isolated Networks
       summary: Bulk insert, remove or replace many networks from the configuration of a device
       operationId: patchDeviceWithNetworks
       description: |
@@ -520,6 +516,8 @@ paths:
             - `cpe-management-isolated-networks-primary-write`
             - `cpe-management-isolated-networks-auxiliary-read`
             - `cpe-management-isolated-networks-auxiliary-write`
+      parameters:
+        - $ref: "#/components/parameters/deviceId"
       requestBody:
         required: true
         content:
@@ -826,11 +824,8 @@ paths:
           $ref: "#/components/responses/Generic503"
 
   /isolated-networks/{netId}/devices:
-    parameters:
-      - $ref: "#/components/parameters/netId"
     get:
       tags:
-        - Devices
         - Isolated Networks
       summary: Get all devices configured with a network
       operationId: getDevicesByNetwork
@@ -854,6 +849,8 @@ paths:
            - **any of**
               - `cpe-management-service-sites-read`
               - `cpe-management-service-sites-location-read`
+      parameters:
+        - $ref: "#/components/parameters/netId"
       responses:
         "200":
           description: Contains information about devices configured with the network
@@ -887,7 +884,6 @@ paths:
 
     patch:
       tags:
-        - Devices
         - Isolated Networks
       summary: Bulk insert, remove, or replace a network from the configuration of many devices
       operationId: patchDevicesWithNetwork
@@ -903,6 +899,8 @@ paths:
             - `cpe-management-isolated-networks-primary-write`
             - `cpe-management-isolated-networks-auxiliary-read`
             - `cpe-management-isolated-networks-auxiliary-write`
+      parameters:
+        - $ref: "#/components/parameters/netId"
       requestBody:
         required: true
         content:
